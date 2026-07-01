@@ -1,24 +1,49 @@
-import {type JSX, useState} from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
-import  { TaskList } from "./components/task-list/task-list.tsx";
-import { AddTaskForm } from "./components/add-task-form/add-task-form.tsx";
+import { type FC } from 'react';
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
+import { Layout } from './components/layout/layout';
+import { SignUp } from './components/sign-up/sign-up';
+import { SignIn } from './components/sign-in/sign-in';
+import { Home } from './components/home/home';
+import { TripDetails } from './components/trip-details/trip-details';
 
-function App(): JSX.Element {
+// Заглушка для Bookings, поки ми її не створили окремо
+const Bookings: FC = () => <div>Список бронювань</div>;
 
-  return (
-      <>
-        <main>
-          <h1>To do list</h1>
-            <AddTaskForm />
-            <TaskList />
-        </main>
+const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <Layout />,
+        children: [
+            {
+                path: '/',
+                element: <Home />,
+            },
+            {
+                path: '/sign-in',
+                element: <SignIn />,
+            },
+            {
+                path: '/sign-up',
+                element: <SignUp />,
+            },
+            {
+                path: '/trip/:tripId',
+                element: <TripDetails />,
+            },
+            {
+                path: '/bookings',
+                element: <Bookings />,
+            },
+            {
+                path: '*',
+                element: <Navigate to="/" replace />,
+            },
+        ],
+    },
+]);
 
-      </>
-)
+const App: FC = () => {
+    return <RouterProvider router={router} />;
+};
 
-}
-
-export default App
+export { App };
