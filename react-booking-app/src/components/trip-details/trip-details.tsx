@@ -4,7 +4,7 @@ import tripsData from '../../assets/data/trips.json';
 import { type Trip } from '../../interfaces/trip';
 import { type Booking } from '../../interfaces/booking';
 
-// Описуємо тип контексту, який приходить з Layout
+
 interface OutletContextType {
     bookings: Booking[];
     onAddBooking: (booking: Omit<Booking, 'id' | 'userId'>) => void;
@@ -16,7 +16,6 @@ const TripDetails: FC = () => {
     const [date, setDate] = useState<string>('');
     const [guests, setGuests] = useState<number>(1);
 
-    // Дістаємо функцію додавання з контексту аутлету!
     const { onAddBooking } = useOutletContext<OutletContextType>();
 
     const trip = (tripsData as Trip[]).find((t) => t.id === tripId);
@@ -25,7 +24,6 @@ const TripDetails: FC = () => {
         return <Navigate to="/" replace />;
     }
 
-    // Обчислюємо завтрашню дату у форматі YYYY-MM-DD для атрибута min
     const getTomorrowDateString = (): string => {
         const tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + 1);
@@ -53,13 +51,11 @@ const TripDetails: FC = () => {
     const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
 
-        // Перевірка валідності безпосередньо перед відправкою
         const tomorrowStr = getTomorrowDateString();
         if (!date || date < tomorrowStr || guests < 1 || guests > 10) {
             return;
         }
 
-        // Передаємо дані у глобальний стейт
         onAddBooking({
             tripId: trip.id,
             guests,
@@ -122,7 +118,6 @@ const TripDetails: FC = () => {
                 </div>
             </main>
 
-            {/* Модальне вікно. Замість атрибуту hidden використовуємо умовний рендеринг React */}
             {isModalOpen && (
                 <div>
                     <div className="modal">

@@ -1,15 +1,16 @@
-import React, { FC } from 'react';
+import { type FC } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+
+import briefcaseIcon from '../../assets/images/briefcase.svg';
+import userIcon from '../../assets/images/user.svg';
 
 const Header: FC = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    // Визначаємо, чи перебуває користувач на сторінках авторизації
     const isAuthPage: boolean = location.pathname === '/sign-up' || location.pathname === '/sign-in';
 
     const handleSignOut = (): void => {
-        // Тимчасовий редірект на сторінку логіну
         navigate('/sign-in');
     };
 
@@ -30,7 +31,7 @@ const Header: FC = () => {
                                     className="nav-header__inner"
                                 >
                                     <span className="visually-hidden">Bookings</span>
-                                    <img src="/assets/images/briefcase.svg" alt="bookings" />
+                                    <img src={briefcaseIcon} alt="bookings" />
                                 </Link>
                             </li>
                             <li className="nav-header__item" title="Profile">
@@ -40,7 +41,7 @@ const Header: FC = () => {
                                     tabIndex={0}
                                 >
                                     <span className="visually-hidden">Profile</span>
-                                    <img src="/assets/images/user.svg" alt="profile" />
+                                    <img src={userIcon} alt="profile" />
                                     <ul
                                         data-test-id="header-profile-nav-list"
                                         className="profile-nav__list"

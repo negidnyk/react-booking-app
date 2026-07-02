@@ -1,4 +1,6 @@
-import React, { FC } from 'react';
+import { type FC } from 'react';
+import heartIcon from '../../assets/images/heart.svg';
+
 
 const Footer: FC = () => {
     return (
@@ -14,7 +16,7 @@ const Footer: FC = () => {
           binary studio
         </a>{' '}
           with{' '}
-          <img className="footer__icon" src="/assets/images/heart.svg" alt="heart" />
+          <img className="footer__icon" src={heartIcon} alt="heart" />
       </span>
         </footer>
     );

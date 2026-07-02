@@ -1,6 +1,5 @@
 import { type FC, type ChangeEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { type Trip } from '../../interfaces/trip';
 import tripsData from '../../assets/data/trips.json';
 
 

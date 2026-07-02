@@ -5,9 +5,8 @@ import { SignUp } from './components/sign-up/sign-up';
 import { SignIn } from './components/sign-in/sign-in';
 import { Home } from './components/home/home';
 import { TripDetails } from './components/trip-details/trip-details';
+import { Bookings } from "./components/bookings/bookings";
 
-// Заглушка для Bookings, поки ми її не створили окремо
-const Bookings: FC = () => <div>Список бронювань</div>;
 
 const router = createBrowserRouter([
     {
